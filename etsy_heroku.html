@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+<py-env>
+</py-env>
+</head>
+
+<body>
+
+    <py-env>
+        - asyncio
+        <!-- - requests
+        - json
+        - etsy2
+        - urllib -->
+    </py-env>
+<style>
+    .button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10%;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+
+    .container {
+  height: 200px;
+  position: relative;
+  border: 3px solid green;
+}
+
+.container1 {
+  height: 400px;
+  position: relative;
+  border: 3px solid rgb(198, 29, 170);
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+</style>
+
+<div class="container">
+    <div class="center">
+        <button class=button id="thebuttonid" type="button" pys-onClick="runPython">Bring PDFs</button>
+        <br><br>
+    </div>
+</div>
+
+
+<div class="container1">
+    <div class="center">
+        <p id="yazi_alani1"></p>
+    </div>
+</div>
+
+<py-script>
+
+from pyodide.http import pyfetch
+import asyncio
+import json
+from js import XMLHttpRequest
+
+
+
+<!-- from etsy2 import Etsy
+from etsy2.oauth import EtsyOAuthHelper, EtsyOAuthClient
+import urllib.parse as urlparse
+from urllib.parse import parse_qs -->
+
+async def runPython(*args):
+
+    # api_key  = 'c1pyscimi7ajj5rs1d9mujpz'
+    # shared_secret  = 'fyl90zad61'
+
+    #Imran
+    api_key = '5y36ssg9n3rragk9m6sbzgmr'
+    shared_secret ='j0dqcibcer'
+    listing_id = 1220428362
+    shop_name = 'BladeLeather'
+    shop_id = str(34716856)
+    user_id = 612638326
+    oauth_token= 'ef12a08c4f95822e35e46c8de19d24'
+    oauth_token_secret= '5d06de2d20'
+
+    url1 = "https://openapi.etsy.com/v2/shops/BladeLeather?api_key=5y36ssg9n3rragk9m6sbzgmr"
+    
+    url="https://jsonplaceholder.typicode.com/todos/2"
+    url2 = "https://stackoverflow.com/questions/72241062/pyscript-stopped-working-after-chrome-update"
+    url3 = "https://api.openweathermap.org/data/2.5/weather?q=helsinki&appid=198700fd07cfb27eb62679f850c5d048"
+
+    try:
+        response = await pyfetch(url3, method="GET")
+        output = f"GET request=> status:{response.status}, json:{await response.json()}"
+
+    except Exception as e:
+        output = e
+
+    #output = f"GET request=> status:{response.status}, json:{await response.json()}"
+    
+    
+
+    <!-- etsy_oauth = EtsyOAuthClient(client_key = api_key,
+                                client_secret = shared_secret,
+                                resource_owner_key = oauth_token,
+                                resource_owner_secret = oauth_token_secret)
+
+    etsy = Etsy(etsy_oauth_client = etsy_oauth)
+
+    # get All details including SKU
+    all_receipts = etsy.findAllShopReceipts(shop_id=shop_id, limit = 1)
+    for receipt in all_receipts:
+        #print(receipt['name'])
+ -->
+    pyscript.write("yazi_alani1", output)
+</py-script>
+
+</body>
+</html>
